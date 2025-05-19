@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Weather V2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Instant Weather</h1>
+        <form id="weatherForm">
+            <input type="text" id="city" placeholder="Entrez une ville" required>
+            <label for="daysRange">Nombre de jours :</label>
+            <input type="range" id="daysRange" min="1" max="7" value="3">
+            <span id="daysDisplay">3</span> jour(s)
+            <fieldset>
+                <legend>Options supplémentaires :</legend>
+                <label><input type="checkbox" id="showLat"> Latitude</label>
+                <label><input type="checkbox" id="showLon"> Longitude</label>
+                <label><input type="checkbox" id="showRain"> Cumul de pluie</label>
+                <label><input type="checkbox" id="showWind"> Vent moyen</label>
+                <label><input type="checkbox" id="showDir"> Direction du vent</label>
+            </fieldset>
+            <button type="submit">Obtenir la météo</button>
+        </form>
+        <section id="weatherDisplay"></section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

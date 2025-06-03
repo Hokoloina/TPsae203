@@ -238,3 +238,28 @@ fieldset {
     border-color: var(--fog-color);
   }
   
+  /* ============= */
+/* Dark-mode text */
+/* ============= */
+/* 1) Texte par défaut en blanc */
+.dark-mode {
+    color: var(--text-dark) !important; /* #eceff4 */
+  }
+  
+  /* 2) Cartes météo : fond sombre + texte blanc */
+  .dark-mode .weather-card {
+    background: #3b4252 !important;
+    color: var(--text-dark) !important;
+  }
+  
+  /* 3) Titres et paragraphes à l’intérieur */
+  .dark-mode .weather-card h3,
+  .dark-mode .weather-card p {
+    color: var(--text-dark) !important;
+  }
+  
+  /* 4) Icônes météo (pour qu’elles restent visibles) */
+  .dark-mode .weather-icon {
+    color: var(--text-dark) !important;
+  }
+  

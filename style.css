@@ -1,12 +1,18 @@
 :root {
-    --bg-light: #f0f4f8;
-    --bg-dark: #2e3440;
-    --text-light: #2e3440;
-    --text-dark: #eceff4;
-    --primary: #5e81ac;
-    --error-color: #d81b60;
-}
-
+    --bg-light:    #e3f2fd;
+    --bg-dark:     #263238;
+    --text-light:  #263238;
+    --text-dark:   #eceff1;
+    --primary:     #0288d1;
+    --sun-color:   #fdd835;
+    --cloud-color: #90a4ae;
+    --rain-color:  #4fc3f7;
+    --storm-color: #8e24aa;
+    --snow-color:  #fff;
+    --fog-color:   #78909c;
+    --error-color: #d32f2f;
+  }
+  
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -113,3 +119,32 @@ fieldset {
         gap: 0.5rem;
     }
 }
+
+/* Icons et cards */
+.weather-icon {
+    font-size: 2.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+  
+  .weather-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 8px solid var(--primary);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  
+  /* Couleurs selon condition */
+  .weather-card.sunny   { border-color: var(--sun-color);   background: linear-gradient(135deg,#fffde7,#e3f2fd);}
+  .weather-card.cloudy  { border-color: var(--cloud-color); background: linear-gradient(135deg,#eceff1,#cfd8dc);}
+  .weather-card.rain    { border-color: var(--rain-color);  background: linear-gradient(135deg,#e1f5fe,#b3e5fc);}
+  .weather-card.storm   { border-color: var(--storm-color); background: linear-gradient(135deg,#f3e5f5,#e1bee7);}
+  .weather-card.snow    { border-color: var(--snow-color);  background: linear-gradient(135deg,#fafafa,#e0f7fa);}
+  .weather-card.fog     { border-color: var(--fog-color);   background: linear-gradient(135deg,#eceff1,#cfd8dc);}
+  

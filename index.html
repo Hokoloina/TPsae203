@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instant Weather V2</title>
+    <!-- Weather Icons par Erik Flowers -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css" />
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Bouton de bascule Dark Mode -->
     <button id="toggleDarkMode" aria-label="Basculer mode sombre">🌓</button>
@@ -16,25 +22,11 @@
         <form id="weatherForm">
             <!-- Pour l’input ville -->
             <label for="city">Entrez une ville :</label>
-            <input 
-                type="text" 
-                id="city" 
-                placeholder="Ex : Caen" 
-                required 
-                aria-required="true"
-            >
+            <input type="text" id="city" placeholder="Ex : Caen" required aria-required="true">
 
             <label for="daysRange">Nombre de jours :</label>
-            <input 
-                type="range" 
-                id="daysRange" 
-                min="1" 
-                max="7" 
-                value="3"
-                aria-valuemin="1"
-                aria-valuemax="7"
-                aria-valuenow="3"
-            >
+            <input type="range" id="daysRange" min="1" max="7" value="3" aria-valuemin="1" aria-valuemax="7"
+                aria-valuenow="3">
             <span id="daysDisplay">3</span> jour(s)
 
             <fieldset>
@@ -55,4 +47,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -191,3 +191,50 @@ fieldset {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+/* ==============================
+   Dark-mode : override cards
+   ============================== */
+
+/* Forcer le texte en foncé pour toutes les weather-cards */
+.dark-mode .weather-card {
+    color: var(--text-light) !important;
+  }
+  
+  /* 🌓 Si tu préfères un fond généralisé plus sombre : */
+  .dark-mode .weather-card {
+    background: #3b4252 !important;
+  }
+  
+  /* 🌓 Ou, classe par classe, tu peux choisir un dégradé sombre */
+  /* Sunny */
+  .dark-mode .weather-card.sunny {
+    background: linear-gradient(135deg, rgba(248,231,28,0.2), rgba(248,231,28,0.1));
+    border-color: var(--sun-color);
+  }
+  /* Cloudy */
+  .dark-mode .weather-card.cloudy {
+    background: linear-gradient(135deg, rgba(144,164,174,0.2), rgba(144,164,174,0.1));
+    border-color: var(--cloud-color);
+  }
+  /* Rain */
+  .dark-mode .weather-card.rain {
+    background: linear-gradient(135deg, rgba(79,195,247,0.2), rgba(79,195,247,0.1));
+    border-color: var(--rain-color);
+  }
+  /* Storm */
+  .dark-mode .weather-card.storm {
+    background: linear-gradient(135deg, rgba(142,36,170,0.2), rgba(142,36,170,0.1));
+    border-color: var(--storm-color);
+  }
+  /* Snow */
+  .dark-mode .weather-card.snow {
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    border-color: var(--snow-color);
+  }
+  /* Fog */
+  .dark-mode .weather-card.fog {
+    background: linear-gradient(135deg, rgba(120,144,156,0.2), rgba(120,144,156,0.1));
+    border-color: var(--fog-color);
+  }
+  

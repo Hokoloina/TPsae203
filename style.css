@@ -1,18 +1,18 @@
 :root {
-    --bg-light:    #e3f2fd;
-    --bg-dark:     #263238;
-    --text-light:  #263238;
-    --text-dark:   #eceff1;
-    --primary:     #0288d1;
-    --sun-color:   #fdd835;
+    --bg-light: #e3f2fd;
+    --bg-dark: #263238;
+    --text-light: #263238;
+    --text-dark: #eceff1;
+    --primary: #0288d1;
+    --sun-color: #fdd835;
     --cloud-color: #90a4ae;
-    --rain-color:  #4fc3f7;
+    --rain-color: #4fc3f7;
     --storm-color: #8e24aa;
-    --snow-color:  #fff;
-    --fog-color:   #78909c;
+    --snow-color: #fff;
+    --fog-color: #78909c;
     --error-color: #d32f2f;
-  }
-  
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -29,6 +29,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-dark);
 }
+
 .dark-mode .weather-card {
     background-color: #3b4252;
     color: var(--text-dark);
@@ -61,7 +62,8 @@ form {
     gap: 1rem;
 }
 
-input[type="text"], button {
+input[type="text"],
+button {
     padding: 0.7rem;
     font-size: 1rem;
 }
@@ -81,7 +83,7 @@ fieldset {
     background-color: white;
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Loader animation */
@@ -94,9 +96,15 @@ fieldset {
     animation: spin 0.8s linear infinite;
     margin: 2rem auto;
 }
+
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Style des messages d’erreur */
@@ -112,9 +120,11 @@ fieldset {
     body {
         padding: 1rem;
     }
+
     main {
         width: 100%;
     }
+
     form {
         gap: 0.5rem;
     }
@@ -125,9 +135,9 @@ fieldset {
     font-size: 2.5rem;
     margin-right: 0.5rem;
     vertical-align: middle;
-  }
-  
-  .weather-card {
+}
+
+.weather-card {
     position: relative;
     display: flex;
     align-items: center;
@@ -135,16 +145,49 @@ fieldset {
     padding: 1rem;
     border-radius: 8px;
     background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-left: 8px solid var(--primary);
     transition: background 0.3s, border-color 0.3s;
-  }
-  
-  /* Couleurs selon condition */
-  .weather-card.sunny   { border-color: var(--sun-color);   background: linear-gradient(135deg,#fffde7,#e3f2fd);}
-  .weather-card.cloudy  { border-color: var(--cloud-color); background: linear-gradient(135deg,#eceff1,#cfd8dc);}
-  .weather-card.rain    { border-color: var(--rain-color);  background: linear-gradient(135deg,#e1f5fe,#b3e5fc);}
-  .weather-card.storm   { border-color: var(--storm-color); background: linear-gradient(135deg,#f3e5f5,#e1bee7);}
-  .weather-card.snow    { border-color: var(--snow-color);  background: linear-gradient(135deg,#fafafa,#e0f7fa);}
-  .weather-card.fog     { border-color: var(--fog-color);   background: linear-gradient(135deg,#eceff1,#cfd8dc);}
-  
+}
+
+/* Couleurs selon condition */
+.weather-card.sunny {
+    border-color: var(--sun-color);
+    background: linear-gradient(135deg, #fffde7, #e3f2fd);
+}
+
+.weather-card.cloudy {
+    border-color: var(--cloud-color);
+    background: linear-gradient(135deg, #eceff1, #cfd8dc);
+}
+
+.weather-card.rain {
+    border-color: var(--rain-color);
+    background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+}
+
+.weather-card.storm {
+    border-color: var(--storm-color);
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+}
+
+.weather-card.snow {
+    border-color: var(--snow-color);
+    background: linear-gradient(135deg, #fafafa, #e0f7fa);
+}
+
+.weather-card.fog {
+    border-color: var(--fog-color);
+    background: linear-gradient(135deg, #eceff1, #cfd8dc);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}

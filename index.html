@@ -7,13 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Bouton de bascule Dark Mode -->
+    <button id="toggleDarkMode" aria-label="Basculer mode sombre">🌓</button>
+
     <main>
         <h1>Instant Weather</h1>
+
         <form id="weatherForm">
-            <input type="text" id="city" placeholder="Entrez une ville" required>
+            <!-- Pour l’input ville -->
+            <label for="city">Entrez une ville :</label>
+            <input 
+                type="text" 
+                id="city" 
+                placeholder="Ex : Caen" 
+                required 
+                aria-required="true"
+            >
+
             <label for="daysRange">Nombre de jours :</label>
-            <input type="range" id="daysRange" min="1" max="7" value="3">
+            <input 
+                type="range" 
+                id="daysRange" 
+                min="1" 
+                max="7" 
+                value="3"
+                aria-valuemin="1"
+                aria-valuemax="7"
+                aria-valuenow="3"
+            >
             <span id="daysDisplay">3</span> jour(s)
+
             <fieldset>
                 <legend>Options supplémentaires :</legend>
                 <label><input type="checkbox" id="showLat"> Latitude</label>
@@ -22,10 +45,14 @@
                 <label><input type="checkbox" id="showWind"> Vent moyen</label>
                 <label><input type="checkbox" id="showDir"> Direction du vent</label>
             </fieldset>
+
             <button type="submit">Obtenir la météo</button>
         </form>
-        <section id="weatherDisplay"></section>
+
+        <!-- aria-live pour annoncer dynamiquement les résultats -->
+        <section id="weatherDisplay" aria-live="polite"></section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>

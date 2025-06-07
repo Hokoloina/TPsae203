@@ -1,16 +1,17 @@
+/* VARIABLES ET TYPOGRAPHIE */
 :root {
-    --bg-light: #e3f2fd;
-    --bg-dark: #263238;
-    --text-light: #263238;
-    --text-dark: #eceff1;
-    --primary: #0288d1;
-    --sun-color: #fdd835;
-    --cloud-color: #90a4ae;
-    --rain-color: #4fc3f7;
-    --storm-color: #8e24aa;
-    --snow-color: #fff;
-    --fog-color: #78909c;
-    --error-color: #d32f2f;
+  --bg-light: #e3f2fd;
+  --bg-dark: #263238; /* Ne sera plus utilisé pour dark mode, remplacé par #121212 */
+  --text-light: #263238;
+  --text-dark: #eceff1; /* Ne sera plus utilisé pour dark mode, remplacé par #ffffff */
+  --primary: #0288d1;
+  --sun-color: #fdd835;
+  --cloud-color: #90a4ae;
+  --rain-color: #4fc3f7;
+  --storm-color: #8e24aa;
+  --snow-color: #fff;
+  --fog-color: #78909c;
+  --error-color: #d32f2f;
 }
 
 body {
@@ -32,6 +33,7 @@ h1 {
     color: var(--primary);
     text-align: center;
 }
+
 
 /* ------------------------------
    Fond animé avec nuages
@@ -67,22 +69,41 @@ h1 {
 }
 
 
-/* Mode sombre */
-.dark-mode {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
+/* Nouveau conteneur pour le bouton dark mode et son libellé — version ajustée avec un z-index très élevé */
+#darkModeToggleContainer {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;               /* Espace entre le bouton et le texte */
+  z-index: 9999 !important; /* Très haut z-index pour s'assurer qu'il soit au-dessus de tous les autres éléments */
+  padding: 0.5rem 0.8rem;    /* Padding pour agrandir la zone cliquable */
+  background: rgba(255, 255, 255, 0.9); /* Fond clair semi-transparent */
+  border-radius: 4px;
 }
 
-.dark-mode .weather-card {
-    background-color: #3b4252;
-    color: var(--text-dark);
+/* Style du libellé "Mode sombre" */
+#darkModeLabel {
+  font-size: 0.9rem;
+  color: #263238;          /* Texte foncé en mode clair pour le contraste */
+  white-space: nowrap;     /* Empêche le retour à la ligne */
+}
+
+/* Adaptation du conteneur et du libellé en dark mode */
+.dark-mode #darkModeToggleContainer {
+  background: rgba(0, 0, 0, 0.9); /* Fond sombre semi-transparent */
+}
+
+.dark-mode #darkModeLabel {
+  color: #ffffff;  /* Texte en blanc pour un meilleur contraste */
 }
 
 /* Bouton Mode sombre */
+/* Modification apportée : retirer le positionnement fixe afin que le bouton
+   s'insère dans le conteneur sans le recouvrir */
 #toggleDarkMode {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
+    /* Retiré: position: fixed; top: 1rem; right: 1rem; */
     background: var(--primary);
     color: var(--text-dark);
     border: none;
@@ -92,6 +113,7 @@ h1 {
     cursor: pointer;
     font-size: 1.2rem;
 }
+
 
 /* ------------------------------
    Formulaire et conteneur principal
@@ -109,11 +131,33 @@ form {
     gap: 1rem;
 }
 
+/* Inchange pour input[type="text"] et input[type="range"] */
 input[type="text"],
-button {
-    padding: 0.7rem;
-    font-size: 1rem;
+input[type="range"] {
+  padding: 0.7rem;
+  font-size: 1rem;
 }
+
+/* ------------------------------
+   Bouton "Obtenir la météo"
+--------------------------------- */
+/* Modification : Le bouton de soumission est maintenant en bleu avec texte blanc */
+button[type="submit"] {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #0277bd; /* Bleu légèrement plus foncé au survol */
+}
+
+
 
 /* ------------------------------
    Toggle switches custom pour options supplémentaires
@@ -319,15 +363,19 @@ button {
 /* ------------------------------
    Dark-mode override
 --------------------------------- */
+
+/*  Fond de page en dark mode plus sombre et texte en blanc pour un meilleur contraste */
 .dark-mode {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+  background-color: #121212 !important; /* Fond très sombre */
+  color: #ffffff !important;             /* Texte blanc */
 }
 
+/* Les cartes météo en dark mode avec fond sombre et texte en blanc */
 .dark-mode .weather-card {
-  background: #3b4252 !important;
-  color: var(--text-dark) !important;
+  background: #1e1e1e !important; /* Fond des cartes plus sombre */
+  color: #ffffff !important;
 }
+
 
 .dark-mode .weather-card h3,
 .dark-mode .weather-card p {
@@ -338,9 +386,41 @@ button {
   color: var(--text-dark) !important;
 }
 
-
-fieldset {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
+/* Dark mode pour les options supplémentaires : fond plus foncé et texte en blanc */
+.dark-mode .toggle-options label {
+  background: #333333 !important; /* Fond sombre */
+  color: #ffffff !important;        /* Texte blanc */
 }
+
+/* Éventuellement, adapter le comportement au survol en dark mode */
+.dark-mode .toggle-options label:hover {
+  background: #444444 !important;
+}
+
+/* Dynamic background overrides for dark mode */
+/*  Des backgrounds plus sombres spécifiquement pour dark mode */
+body.dark-mode.bg-sunny {
+  background: linear-gradient(135deg, #0c1b33, #122b45);
+}
+
+body.dark-mode.bg-cloudy {
+  background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
+}
+
+body.dark-mode.bg-rain {
+  background: linear-gradient(135deg, #0a1c26, #123140);
+}
+
+body.dark-mode.bg-storm {
+  background: linear-gradient(135deg, #0f1621, #1a2030);
+}
+
+body.dark-mode.bg-snow {
+  background: linear-gradient(135deg, #1a1a1a, #242424);
+}
+
+body.dark-mode.bg-fog {
+  background: linear-gradient(135deg, #1b1b1b, #262626);
+}
+
 

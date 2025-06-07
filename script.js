@@ -59,40 +59,40 @@ async function fetchCommuneByName(nomVille) {
 
 // Mapping code MétéoConcept → icône Weather Icons + class CSS
 const weatherMap = {
-    0:  { icon: 'wi-day-sunny',        cls: 'sunny',  txt: 'Dégagé' },
-    1:  { icon: 'wi-day-sunny-overcast',cls: 'sunny',  txt: 'Peu nuageux' },
-    2:  { icon: 'wi-day-cloudy',       cls: 'cloudy', txt: 'Variable' },
-    3:  { icon: 'wi-cloudy',           cls: 'cloudy', txt: 'Couvert' },
-    4:  { icon: 'wi-sprinkle',         cls: 'rain',   txt: 'Bruine / pluie légère' },
-    5:  { icon: 'wi-rain',             cls: 'rain',   txt: 'Pluie modérée' },
-    6:  { icon: 'wi-rain-wind',        cls: 'rain',   txt: 'Pluie forte' },
-    7:  { icon: 'wi-snow',             cls: 'snow',   txt: 'Neige modérée' },
-    8:  { icon: 'wi-snow-wind',        cls: 'snow',   txt: 'Neige forte' },
-    9:  { icon: 'wi-rain-mix',         cls: 'snow',   txt: 'Pluie et neige mêlées' },
-    10: { icon: 'wi-showers',         cls: 'rain',   txt: 'Averses fréquentes' },
-    11: { icon: 'wi-fog',             cls: 'fog',    txt: 'Brouillard' },
-    12: { icon: 'wi-snow',            cls: 'snow',   txt: 'Fortes chutes de neige' },
-    13: { icon: 'wi-sleet',           cls: 'snow',   txt: 'Averses neige/pluie' },
-    14: { icon: 'wi-snow',            cls: 'snow',   txt: 'Averses de neige' },
-    15: { icon: 'wi-showers',         cls: 'rain',   txt: 'Averses de pluie' },
-    16: { icon: 'wi-thunderstorm',    cls: 'storm',  txt: 'Orages modérés' },
-    17: { icon: 'wi-lightning',       cls: 'storm',  txt: 'Orages violents' },
-    18: { icon: 'wi-thunderstorm',    cls: 'storm',  txt: 'Orages localisés' },
-    19: { icon: 'wi-thunderstorm',    cls: 'storm',  txt: 'Orages violents localisés' },
+    0: { icon: 'wi-day-sunny', cls: 'sunny', txt: 'Dégagé' },
+    1: { icon: 'wi-day-sunny-overcast', cls: 'sunny', txt: 'Peu nuageux' },
+    2: { icon: 'wi-day-cloudy', cls: 'cloudy', txt: 'Variable' },
+    3: { icon: 'wi-cloudy', cls: 'cloudy', txt: 'Couvert' },
+    4: { icon: 'wi-sprinkle', cls: 'rain', txt: 'Bruine / pluie légère' },
+    5: { icon: 'wi-rain', cls: 'rain', txt: 'Pluie modérée' },
+    6: { icon: 'wi-rain-wind', cls: 'rain', txt: 'Pluie forte' },
+    7: { icon: 'wi-snow', cls: 'snow', txt: 'Neige modérée' },
+    8: { icon: 'wi-snow-wind', cls: 'snow', txt: 'Neige forte' },
+    9: { icon: 'wi-rain-mix', cls: 'snow', txt: 'Pluie et neige mêlées' },
+    10: { icon: 'wi-showers', cls: 'rain', txt: 'Averses fréquentes' },
+    11: { icon: 'wi-fog', cls: 'fog', txt: 'Brouillard' },
+    12: { icon: 'wi-snow', cls: 'snow', txt: 'Fortes chutes de neige' },
+    13: { icon: 'wi-sleet', cls: 'snow', txt: 'Averses neige/pluie' },
+    14: { icon: 'wi-snow', cls: 'snow', txt: 'Averses de neige' },
+    15: { icon: 'wi-showers', cls: 'rain', txt: 'Averses de pluie' },
+    16: { icon: 'wi-thunderstorm', cls: 'storm', txt: 'Orages modérés' },
+    17: { icon: 'wi-lightning', cls: 'storm', txt: 'Orages violents' },
+    18: { icon: 'wi-thunderstorm', cls: 'storm', txt: 'Orages localisés' },
+    19: { icon: 'wi-thunderstorm', cls: 'storm', txt: 'Orages violents localisés' },
 
     // Ajouts des nouveaux codes météo trouvés
     104: { icon: 'wi-day-rain', cls: 'rain', txt: 'Pluie intermittente avec éclaircies' },
     211: { icon: 'wi-cloudy-windy', cls: 'storm', txt: 'Ciel sombre et vent fort' },
-    43:  { icon: 'wi-raindrops', cls: 'rain', txt: 'Pluie fine persistante' },
-    40:  { icon: 'wi-rain',            cls: 'rain',   txt: 'Pluie intermittente' },
-    41:  { icon: 'wi-showers',         cls: 'rain',   txt: 'Pluie continue' },
-    44:  { icon: 'wi-rain-wind',       cls: 'rain',   txt: 'Pluie forte et vent' },
-    212: { icon: 'wi-thunderstorm',    cls: 'storm',  txt: 'Orages violents et vents forts' },
+    43: { icon: 'wi-raindrops', cls: 'rain', txt: 'Pluie fine persistante' },
+    40: { icon: 'wi-rain', cls: 'rain', txt: 'Pluie intermittente' },
+    41: { icon: 'wi-showers', cls: 'rain', txt: 'Pluie continue' },
+    44: { icon: 'wi-rain-wind', cls: 'rain', txt: 'Pluie forte et vent' },
+    212: { icon: 'wi-thunderstorm', cls: 'storm', txt: 'Orages violents et vents forts' },
     210: { icon: 'wi-cloudy-gusts', cls: 'storm', txt: 'Vent fort et ciel chargé' },
     224: { icon: 'wi-strong-wind', cls: 'storm', txt: 'Vent puissant et rafales' },
     47: { icon: 'wi-storm-showers', cls: 'storm', txt: 'Averses et coup de vent' },
-    
-    
+
+
     // Ajout d’un cas réaliste pour tout code inconnu
     default: { icon: 'wi-day-cloudy-gusts', cls: 'cloudy', txt: 'Temps instable' }
 };
@@ -113,7 +113,7 @@ form.addEventListener("submit", async (e) => {
     loader.setAttribute("role", "status");
     display.appendChild(loader);
 
-    // Récupère valeurs user
+    // Récupération des valeurs saisies par l'utilisateur
     const cityRaw = document.getElementById("city").value.trim();
     if (!cityRaw) {
         display.innerHTML = `<p class="error">Merci d’entrer une ville.</p>`;
@@ -139,21 +139,25 @@ form.addEventListener("submit", async (e) => {
         if (!resM.ok) throw new Error(`Erreur Météo-Concept : ${resM.status}`);
         const dataM = await resM.json();
         console.log("✅ Prévisions reçues :", dataM);
+        //  Dynamiser le fond de page selon le temps du premier jour
+        // Obtenir la météo correspondant au premier jour et appliquer la classe de fond dynamique
+        const currentWeather = weatherMap[dataM.forecast[0].weather] || weatherMap.default;
+        // On retire d'abord d'éventuelles classes de fond afin d'éviter des conflits
+        document.body.classList.remove("bg-sunny", "bg-cloudy", "bg-rain", "bg-storm", "bg-snow", "bg-fog");
+        // Ajout de la classe de fond : ex. "bg-sunny", "bg-rain", etc.
+        document.body.classList.add("bg-" + currentWeather.cls);
 
-        // Enlève le loader
+        // Enlève le loader après le traitement
         display.innerHTML = "";
 
         // pour voir les données renvoyées par l'API
         console.log("📊 Forecast data:", JSON.stringify(dataM.forecast, null, 2));
 
-        
+
 
         // Affiche les cartes météo
         dataM.forecast.slice(0, nbDays).forEach(day => {
             const w = weatherMap[day.weather] || weatherMap.default; // Temps instable pour les codes imprévus
-
-
-
 
             const dateFR = new Date(day.datetime)
                 .toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });

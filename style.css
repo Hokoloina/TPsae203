@@ -14,15 +14,58 @@
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     background-color: var(--bg-light);
     color: var(--text-light);
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     padding: 2rem;
+    transition: background 0.5s ease-in-out;
 }
+
+/* Titre en Great Vibes */
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+/* ------------------------------
+   Fond animé avec nuages
+--------------------------------- */
+.clouds {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -2;
+}
+
+/* Style et animation des nuages */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(110vw);
+    }
+}
+
 
 /* Mode sombre */
 .dark-mode {
@@ -50,10 +93,14 @@ body {
     font-size: 1.2rem;
 }
 
-
+/* ------------------------------
+   Formulaire et conteneur principal
+--------------------------------- */
 main {
     max-width: 600px;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 form {
@@ -68,198 +115,232 @@ button {
     font-size: 1rem;
 }
 
+/* ------------------------------
+   Toggle switches custom pour options supplémentaires
+--------------------------------- */
+.toggle-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.toggle-option {
+  flex: 1 1 calc(50% - 1rem);
+}
+
+.toggle-option label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f1f1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-option label:hover {
+  background: #e0e0e0;
+}
+
+.toggle-option .toggle-icon {
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-right: 0.5rem;
+}
+
+/* Masquer la case à cocher native */
+.toggle-option input {
+  display: none;
+}
+
+/* Slider custom du toggle */
+.toggle-option .slider {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 10px;
+  margin-left: auto;
+  transition: background 0.3s;
+}
+
+.toggle-option .slider::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.toggle-option input:checked + .slider {
+  background: var(--primary);
+}
+
+.toggle-option input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* ------------------------------
+   Affichage des cartes météo
+--------------------------------- */
+#weatherDisplay {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.weather-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 8px solid var(--primary);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* Animation de transition du background selon conditions météo */
+
+.bg-sunny {
+  background: linear-gradient(135deg, #fffde7, #e3f2fd);
+}
+.bg-cloudy {
+  background: linear-gradient(135deg, #eceff1, #cfd8dc);
+}
+.bg-rain {
+  background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+}
+.bg-storm {
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+}
+.bg-snow {
+  background: linear-gradient(135deg, #fafafa, #e0f7fa);
+}
+.bg-fog {
+  background: linear-gradient(135deg, #eceff1, #cfd8dc);
+}
+
+/* ------------------------------
+   Couleurs et styles des cartes météo selon condition
+--------------------------------- */
+.weather-icon {
+  font-size: 2.5rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.weather-card.sunny {
+  border-color: var(--sun-color);
+}
+
+.weather-card.cloudy {
+  border-color: var(--cloud-color);
+}
+
+.weather-card.rain {
+  border-color: var(--rain-color);
+}
+
+.weather-card.storm {
+  border-color: var(--storm-color);
+}
+
+.weather-card.snow {
+  border-color: var(--snow-color);
+}
+
+.weather-card.fog {
+  border-color: var(--fog-color);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ------------------------------
+   Loader animation
+--------------------------------- */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ------------------------------
+   Messages d’erreur
+--------------------------------- */
+.error {
+  color: var(--error-color);
+  background: #ffcdd2;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* ------------------------------
+   Responsive mobile-first
+--------------------------------- */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+  main {
+    width: 100%;
+  }
+  form {
+    gap: 0.5rem;
+  }
+}
+  
+/* ------------------------------
+   Dark-mode override
+--------------------------------- */
+.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.dark-mode .weather-card {
+  background: #3b4252 !important;
+  color: var(--text-dark) !important;
+}
+
+.dark-mode .weather-card h3,
+.dark-mode .weather-card p {
+  color: var(--text-dark) !important;
+}
+
+.dark-mode .weather-icon {
+  color: var(--text-dark) !important;
+}
+
+
 fieldset {
     border: 1px solid #ccc;
     padding: 0.5rem;
 }
 
-#weatherDisplay {
-    margin-top: 2rem;
-    display: grid;
-    gap: 1rem;
-}
-
-.weather-card {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Loader animation */
-.loader {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid var(--primary);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 0.8s linear infinite;
-    margin: 2rem auto;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Style des messages d’erreur */
-.error {
-    color: var(--error-color);
-    background: #ffcdd2;
-    padding: 0.5rem;
-    border-radius: 4px;
-}
-
-/* Responsive mobile-first */
-@media (max-width: 600px) {
-    body {
-        padding: 1rem;
-    }
-
-    main {
-        width: 100%;
-    }
-
-    form {
-        gap: 0.5rem;
-    }
-}
-
-/* Icons et cards */
-.weather-icon {
-    font-size: 2.5rem;
-    margin-right: 0.5rem;
-    vertical-align: middle;
-}
-
-.weather-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-left: 8px solid var(--primary);
-    transition: background 0.3s, border-color 0.3s;
-}
-
-/* Couleurs selon condition */
-.weather-card.sunny {
-    border-color: var(--sun-color);
-    background: linear-gradient(135deg, #fffde7, #e3f2fd);
-}
-
-.weather-card.cloudy {
-    border-color: var(--cloud-color);
-    background: linear-gradient(135deg, #eceff1, #cfd8dc);
-}
-
-.weather-card.rain {
-    border-color: var(--rain-color);
-    background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
-}
-
-.weather-card.storm {
-    border-color: var(--storm-color);
-    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-}
-
-.weather-card.snow {
-    border-color: var(--snow-color);
-    background: linear-gradient(135deg, #fafafa, #e0f7fa);
-}
-
-.weather-card.fog {
-    border-color: var(--fog-color);
-    background: linear-gradient(135deg, #eceff1, #cfd8dc);
-}
-
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
-/* ==============================
-   Dark-mode : override cards
-   ============================== */
-
-/* Forcer le texte en foncé pour toutes les weather-cards */
-.dark-mode .weather-card {
-    color: var(--text-light) !important;
-  }
-  
-  /* 🌓 Si tu préfères un fond généralisé plus sombre : */
-  .dark-mode .weather-card {
-    background: #3b4252 !important;
-  }
-  
-  /* 🌓 Ou, classe par classe, tu peux choisir un dégradé sombre */
-  /* Sunny */
-  .dark-mode .weather-card.sunny {
-    background: linear-gradient(135deg, rgba(248,231,28,0.2), rgba(248,231,28,0.1));
-    border-color: var(--sun-color);
-  }
-  /* Cloudy */
-  .dark-mode .weather-card.cloudy {
-    background: linear-gradient(135deg, rgba(144,164,174,0.2), rgba(144,164,174,0.1));
-    border-color: var(--cloud-color);
-  }
-  /* Rain */
-  .dark-mode .weather-card.rain {
-    background: linear-gradient(135deg, rgba(79,195,247,0.2), rgba(79,195,247,0.1));
-    border-color: var(--rain-color);
-  }
-  /* Storm */
-  .dark-mode .weather-card.storm {
-    background: linear-gradient(135deg, rgba(142,36,170,0.2), rgba(142,36,170,0.1));
-    border-color: var(--storm-color);
-  }
-  /* Snow */
-  .dark-mode .weather-card.snow {
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    border-color: var(--snow-color);
-  }
-  /* Fog */
-  .dark-mode .weather-card.fog {
-    background: linear-gradient(135deg, rgba(120,144,156,0.2), rgba(120,144,156,0.1));
-    border-color: var(--fog-color);
-  }
-  
-  /* ============= */
-/* Dark-mode text */
-/* ============= */
-/* 1) Texte par défaut en blanc */
-.dark-mode {
-    color: var(--text-dark) !important; /* #eceff4 */
-  }
-  
-  /* 2) Cartes météo : fond sombre + texte blanc */
-  .dark-mode .weather-card {
-    background: #3b4252 !important;
-    color: var(--text-dark) !important;
-  }
-  
-  /* 3) Titres et paragraphes à l’intérieur */
-  .dark-mode .weather-card h3,
-  .dark-mode .weather-card p {
-    color: var(--text-dark) !important;
-  }
-  
-  /* 4) Icônes météo (pour qu’elles restent visibles) */
-  .dark-mode .weather-icon {
-    color: var(--text-dark) !important;
-  }
-  

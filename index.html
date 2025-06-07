@@ -8,11 +8,24 @@
     <!-- Weather Icons par Erik Flowers -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css" />
+    <!-- Ajout de Google Fonts pour une typographie moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Weather Icons par Erik Flowers -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css" />
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Ajout d'un conteneur pour afficher des nuages animés en fond -->
+    <div class="clouds">
+        <!-- Ajout de plusieurs div pour simuler le mouvement des nuages -->
+        <div class="cloud" style="top: 20px; left: -150px; width: 200px; height: 60px; animation-duration: 50s;"></div>
+        <div class="cloud" style="top: 60px; left: -100px; width: 150px; height: 50px; animation-duration: 70s;"></div>
+        <div class="cloud" style="top: 40px; left: -200px; width: 250px; height: 70px; animation-duration: 60s;"></div>
+    </div>
     <!-- Bouton de bascule Dark Mode -->
     <button id="toggleDarkMode" aria-label="Basculer mode sombre">🌓</button>
 
@@ -21,27 +34,65 @@
 
         <form id="weatherForm">
             <!-- Pour l’input ville -->
-            <label for="city">Entrez une ville :</label>
-            <input type="text" id="city" placeholder="Ex : Caen" required aria-required="true">
 
+            <label for="city">Entrez une ville :</label>
+            <input type="text" id="city" placeholder="Ex : Caen" required aria-required="true" autocomplete="off">
+
+            <!--Slider pour choisir le nombre de jours  -->
             <label for="daysRange">Nombre de jours :</label>
             <input type="range" id="daysRange" min="1" max="7" value="3" aria-valuemin="1" aria-valuemax="7"
                 aria-valuenow="3">
             <span id="daysDisplay">3</span> jour(s)
 
-            <fieldset>
+            <!-- Pour les options supplémentaires  -->
+            <fieldset class="toggle-options">
                 <legend>Options supplémentaires :</legend>
-                <label><input type="checkbox" id="showLat"> Latitude</label>
-                <label><input type="checkbox" id="showLon"> Longitude</label>
-                <label><input type="checkbox" id="showRain"> Cumul de pluie</label>
-                <label><input type="checkbox" id="showWind"> Vent moyen</label>
-                <label><input type="checkbox" id="showDir"> Direction du vent</label>
+                <div class="toggle-option">
+                    <label for="showLat">
+                        <span class="toggle-icon">📍</span>
+                        Latitude
+                        <input type="checkbox" id="showLat">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-option">
+                    <label for="showLon">
+                        <span class="toggle-icon">🌐</span>
+                        Longitude
+                        <input type="checkbox" id="showLon">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-option">
+                    <label for="showRain">
+                        <span class="toggle-icon">🌧️</span>
+                        Cumul de pluie
+                        <input type="checkbox" id="showRain">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-option">
+                    <label for="showWind">
+                        <span class="toggle-icon">💨</span>
+                        Vent moyen
+                        <input type="checkbox" id="showWind">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-option">
+                    <label for="showDir">
+                        <span class="toggle-icon">🧭</span>
+                        Direction du vent
+                        <input type="checkbox" id="showDir">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </fieldset>
 
             <button type="submit">Obtenir la météo</button>
         </form>
 
-        <!-- aria-live pour annoncer dynamiquement les résultats -->
+        <!-- Zone d'affichage dynamique  -->
         <section id="weatherDisplay" aria-live="polite"></section>
     </main>
 
